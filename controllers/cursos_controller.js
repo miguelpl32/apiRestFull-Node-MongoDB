@@ -50,14 +50,15 @@ exports.deleteCurso =  (req, res) => {
 async function listarCursosActivos(){
     let cursos = await Curso
     .find({"estado": true})
-    .populate('autor', 'nombre -_id') // con -id excluimos que nos traiga el id
+    //.populate('autor', 'nombre -_id') // con -id excluimos que nos traiga el id
     return cursos;
 };
 
 async function crearCurso(req){
     let curso = new Curso({
         titulo: req.body.titulo,
-        autor: req.usuario._id,
+       // autor: req.usuario._id,
+        autor: req.usuario,
         descripcion: req.body.descripcion,
         
     })
